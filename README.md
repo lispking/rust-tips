@@ -7,3 +7,10 @@
 在这个仓库中，我将分享一些有用的 Rust 编程技巧和示例代码，希望能对大家有所帮助。欢迎大家一起学习和交流！
 
 了解更多，请查看[探索 Rust 宝藏：每日技巧栏目上线！](https://mp.weixin.qq.com/s/1LFJC3ICw-K1mDaOS1AH_Q)
+
+
+## 运行示例说明
+
+```shell
+cargo r --bin=t01-match
+```
