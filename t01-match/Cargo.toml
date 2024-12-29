@@ -1,0 +1,7 @@
+[package]
+name = "t01-match"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+
+[dependencies]
