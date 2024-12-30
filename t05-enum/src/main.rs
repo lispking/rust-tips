@@ -15,4 +15,10 @@ fn print_color(color: Color) {
 fn main() {
     let my_color = Color::Green;
     print_color(my_color);
+
+    let my_color = Color::Blue;
+    print_color(my_color);
+
+    let my_color = Color::Red;
+    print_color(my_color);
 }
