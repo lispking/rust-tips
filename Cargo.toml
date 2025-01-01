@@ -22,4 +22,5 @@ members = [
     "t05-enum",
     "t06-option",
     "t07-result",
+    "t08-ownership",
 ]
