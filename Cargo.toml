@@ -1,13 +1,13 @@
 [workspace.package]
-name = "rust-tips" # the name of the package
-version = "0.1.0"    # the current version, obeying semver
-authors = ["lispking <lispking@qq.com>"] # the authors of the package
-edition = "2021"    # the edition of Rust to use
-license = "Apache-2.0" # the license of the package
-readme = "README.md" # the path to the README file
-description = "Rust tips" # a description of the package
-keywords = ["rust", "tips"] # keywords for the package
-categories = ["development-tools"] # categories for the package
+name = "rust-tips"                                       # the name of the package
+version = "0.1.0"                                        # the current version, obeying semver
+authors = ["lispking <lispking@qq.com>"]                 # the authors of the package
+edition = "2021"                                         # the edition of Rust to use
+license = "Apache-2.0"                                   # the license of the package
+readme = "README.md"                                     # the path to the README file
+description = "Rust tips"                                # a description of the package
+keywords = ["rust", "tips"]                              # keywords for the package
+categories = ["development-tools"]                       # categories for the package
 homepage = "https://github.com/lispking/rust-tips.git"
 repository = "https://github.com/lispking/rust-tips.git"
 
@@ -23,4 +23,5 @@ members = [
     "t06-option",
     "t07-result",
     "t08-ownership",
+    "t09-higher-order-fun",
 ]
