@@ -25,4 +25,5 @@ members = [
     "t08-ownership",
     "t09-higher-order-fun",
     "t10-from-to",
+    "t11-question-mark",
 ]
