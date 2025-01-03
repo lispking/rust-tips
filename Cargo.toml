@@ -24,4 +24,5 @@ members = [
     "t07-result",
     "t08-ownership",
     "t09-higher-order-fun",
+    "t10-from-to",
 ]
