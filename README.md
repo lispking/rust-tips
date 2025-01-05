@@ -8,6 +8,8 @@
 
 了解更多，请查看[探索 Rust 宝藏：每日技巧栏目上线！](https://mp.weixin.qq.com/s/1LFJC3ICw-K1mDaOS1AH_Q)
 
+最后附上[《Web3 技术学习指南与成长助力》](https://mp.weixin.qq.com/s/aaCbNHlPmnDi1wiqzZKvzQ)
+
 
 ## 运行示例说明
 
