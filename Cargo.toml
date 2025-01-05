@@ -26,4 +26,5 @@ members = [
     "t09-higher-order-fun",
     "t10-from-to",
     "t11-question-mark",
+    "t12-slice",
 ]
