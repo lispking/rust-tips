@@ -28,4 +28,5 @@ members = [
     "t11-question-mark",
     "t12-slice",
     "t13-box",
+    "t14-generic",
 ]
