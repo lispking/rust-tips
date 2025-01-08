@@ -1,7 +1,0 @@
-[package]
-name = "t02-iter"
-version.workspace = true
-authors.workspace = true
-edition.workspace = true
-
-[dependencies]

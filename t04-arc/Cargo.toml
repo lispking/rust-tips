@@ -1,7 +1,0 @@
-[package]
-name = "t04-arc"
-version.workspace = true
-authors.workspace = true
-edition.workspace = true
-
-[dependencies]

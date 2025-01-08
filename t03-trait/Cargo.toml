@@ -1,7 +1,0 @@
-[package]
-name = "t03-trait"
-version.workspace = true
-authors.workspace = true
-edition.workspace = true
-
-[dependencies]

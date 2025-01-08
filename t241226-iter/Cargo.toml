@@ -1,0 +1,7 @@
+[package]
+name = "t241226-iter"
+version.workspace = true
+authors.workspace = true
+edition.workspace = true
+
+[dependencies]
