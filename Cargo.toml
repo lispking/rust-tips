@@ -29,5 +29,7 @@ members = [
     "t250105-slice",
     "t250106-box",
     "t250107-generic",
-    "t250108-reference"
+    "t250108-reference",
+    "t250109-mpsc-channel",
+    "t250110-return-fun",
 ]
