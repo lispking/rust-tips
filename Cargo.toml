@@ -31,5 +31,8 @@ members = [
     "t250107-generic",
     "t250108-reference",
     "t250109-mpsc-channel",
-    "t250110-return-fun", "t250111-macro", "t250112-arc-mutex",
+    "t250110-return-fun",
+    "t250111-macro",
+    "t250112-arc-mutex",
+    "t250113-type",
 ]
