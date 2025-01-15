@@ -35,4 +35,6 @@ members = [
     "t250111-macro",
     "t250112-arc-mutex",
     "t250113-type",
+    "t250114-simple-web",
+    "t250115-simple-web-with-tokio",
 ]
