@@ -37,4 +37,5 @@ members = [
     "t250113-type",
     "t250114-simple-web",
     "t250115-simple-web-with-tokio",
+    "t250116-simple-web-multi-thread",
 ]
