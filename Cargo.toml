@@ -38,5 +38,7 @@ members = [
     "t250114-simple-web",
     "t250115-simple-web-with-tokio",
     "t250116-simple-web-multi-thread",
-    "t250117-file-read", "t250118-check-digits",
+    "t250117-file-read",
+    "t250118-check-digits",
+    "t250119-capitalize-words",
 ]
