@@ -40,5 +40,5 @@ members = [
     "t250116-simple-web-multi-thread",
     "t250117-file-read",
     "t250118-check-digits",
-    "t250119-capitalize-words",
+    "t250119-capitalize-words", "t250120-move",
 ]
