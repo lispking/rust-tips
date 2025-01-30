@@ -1,0 +1,48 @@
+# Rust build directory
+/target/
+
+# Cargo lock file (uncomment this if this is a library)
+# Cargo.lock
+
+# Backup files
+**/*.rs.bk
+
+# macOS specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+.code-workspace
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# OpenAI API key file (if you're using one)
+openai_key.txt
+
+# Generated embeddings or cache
+.cache/
+embeddings/
+vector_store/
+
+# Log files
+*.log
+
+# PDF files in documents directory (uncomment if you don't want to track PDFs)
+# documents/*.pdf
+
+# Binary files
+*.exe
+*.dll
+*.dylib
+*.so
+
+# Debug files
+*.pdb

@@ -43,4 +43,5 @@ members = [
     "t250119-capitalize-words",
     "t250120-move",
     "t250124-rig-gemini",
+    "t250130-rag-system",
 ]
