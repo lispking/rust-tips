@@ -14,40 +14,44 @@ struct Document {
 }
 
 fn load_pdf(path: PathBuf) -> Result<Vec<String>> {
-    let mut chunks = Vec::new();
-    let mut current_chunk = String::new();
-    let chunk_size = 2000; // Approximately 2000 characters per chunk
+    const CHUNK_SIZE: usize = 2000;
 
-    for entry in PdfFileLoader::with_glob(path.to_str().unwrap())?.read() {
-        let content = entry?;
+    let content_chunks = PdfFileLoader::with_glob(path.to_str().context("Invalid path")?)?
+        .read()
+        .into_iter()
+        .filter_map(|result| {
+            result
+                .map_err(|e| {
+                    eprintln!("Error reading PDF content: {}", e);
+                    e
+                })
+                .ok()
+        })
+        .flat_map(|content| {
+            let mut chunks = Vec::new();
+            let mut current = String::new();
 
-        // Split content into words
-        let words: Vec<&str> = content.split_whitespace().collect();
-
-        for word in words {
-            if current_chunk.len() + word.len() + 1 > chunk_size {
-                // If adding the next word would exceed chunk size,
-                // save current chunk and start a new one
-                if !current_chunk.is_empty() {
-                    chunks.push(current_chunk.trim().to_string());
-                    current_chunk.clear();
+            for word in content.split_whitespace() {
+                if current.len() + word.len() + 1 > CHUNK_SIZE && !current.is_empty() {
+                    chunks.push(std::mem::take(&mut current).trim().to_string());
                 }
+                current.push_str(word);
+                current.push(' ');
             }
-            current_chunk.push_str(word);
-            current_chunk.push(' ');
-        }
+
+            if !current.is_empty() {
+                chunks.push(current.trim().to_string());
+            }
+
+            chunks
+        })
+        .collect::<Vec<_>>();
+
+    if content_chunks.is_empty() {
+        anyhow::bail!("No content found in PDF file: {}", path.display());
     }
 
-    // last chunk
-    if !current_chunk.is_empty() {
-        chunks.push(current_chunk.trim().to_string());
-    }
-
-    if chunks.is_empty() {
-        anyhow::bail!("No content found in PDF file: {:?}", path);
-    }
-
-    Ok(chunks)
+    Ok(content_chunks)
 }
 
 #[tokio::main]
@@ -58,31 +62,21 @@ async fn main() -> Result<()> {
     // Load PDFs using Rig's built-in PDF loader
     let documents_dir = std::env::current_dir()?.join("documents");
 
-    let moores_law_chunks = load_pdf(documents_dir.join("Moores_Law_for_Everything.pdf"))
-        .context("Failed to load Moores_Law_for_Everything.pdf")?;
-    let last_question_chunks = load_pdf(documents_dir.join("The_Last_Question.pdf"))
-        .context("Failed to load The_Last_Question.pdf")?;
+    let pdf_chunks =
+        load_pdf(documents_dir.join("Moores_Law_for_Everything.pdf")).context("Failed to load pdf documents")?;
 
     println!("Successfully loaded and chunked PDF documents");
 
     // Create embedding model
-    let model = client.embedding_model("nomic-embed-text");
+    let model = client.embedding_model("bge-m3");
 
     // Create embeddings builder
     let mut builder = EmbeddingsBuilder::new(model.clone());
 
-    // Add chunks from Moore's Law
-    for (i, chunk) in moores_law_chunks.into_iter().enumerate() {
+    // Add chunks from pdf documents
+    for (i, chunk) in pdf_chunks.into_iter().enumerate() {
         builder = builder.document(Document {
-            id: format!("moores_law_{}", i),
-            content: chunk,
-        })?;
-    }
-
-    // Add chunks from The Last Question
-    for (i, chunk) in last_question_chunks.into_iter().enumerate() {
-        builder = builder.document(Document {
-            id: format!("last_question_{}", i),
+            id: format!("pdf_document_{}", i),
             content: chunk,
         })?;
     }
@@ -102,7 +96,7 @@ async fn main() -> Result<()> {
     let rag_agent = client
         .agent("deepseek-r1")
         .preamble("You are a helpful assistant that answers questions based on the provided document context. When answering questions, try to synthesize information from multiple chunks if they're related.")
-        .dynamic_context(4, index) // Increased to 4 since we have chunks now
+        .dynamic_context(1, index)
         .build();
 
     println!("Starting CLI chatbot...");
